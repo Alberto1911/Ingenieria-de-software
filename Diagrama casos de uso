@@ -1,0 +1,35 @@
+@startuml
+title Diagrama de Casos de Uso - Sistema de Gestión de Farmacia
+
+actor Empleado
+actor Administrador
+actor Cliente
+
+rectangle "Sistema de Farmacia" {
+  
+  usecase "Iniciar sesión" as UC1
+  usecase "Registrar producto" as UC2
+  usecase "Gestionar inventario" as UC3
+  usecase "Facturar venta" as UC4
+  usecase "Registrar cliente" as UC5
+  usecase "Generar reporte de ventas" as UC6
+  usecase "Generar reporte de ingresos" as UC7
+  usecase "Consultar productos" as UC8
+
+}
+
+' Relaciones de actores con casos de uso
+Empleado --> UC1
+Empleado --> UC2
+Empleado --> UC3
+Empleado --> UC4
+Empleado --> UC5
+Empleado --> UC8
+
+Administrador --> UC1
+Administrador --> UC6
+Administrador --> UC7
+
+Cliente --> UC5
+
+@enduml
