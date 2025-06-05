@@ -1,0 +1,33 @@
+@startuml
+title Diagrama de Despliegue: Sistema de Software para Farmacia
+
+node "Punto de Venta (Cliente)" {
+    artifact "Interfaz de Usuario\n(Web o Escritorio)" as UI
+    UI -down-> "Servidor de Aplicaciones" : HTTP/HTTPS
+}
+
+node "Servidor de Aplicaciones" {
+    artifact "AppFarmacia.jar" as App
+    component "Módulo de Inventario"
+    component "Módulo de Facturación"
+    component "Módulo de Reportes"
+    component "Módulo de Gestión de Productos"
+    component "Módulo de Gestión de Clientes"
+
+    UI --> App
+    App --> "Módulo de Inventario"
+    App --> "Módulo de Facturación"
+    App --> "Módulo de Reportes"
+    App --> "Módulo de Gestión de Productos"
+    App --> "Módulo de Gestión de Clientes"
+}
+
+node "Servidor de Base de Datos" {
+    database "MySQL\nBase de Datos Farmacia" as DB
+}
+
+App --> DB : JDBC / API SQL
+
+' Conexión adicional para exportación
+component "Exportador PDF/Excel" as Exportador
+App --> Exportador
