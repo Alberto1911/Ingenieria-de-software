@@ -1,0 +1,1 @@
+Este repositorio contiene todos los diagramas UML desarrollados para el proyecto de software de gestión de una farmacia. Incluye representaciones visuales en PlantUML de los principales módulos y procesos del sistema
