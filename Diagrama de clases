@@ -1,0 +1,56 @@
+@startuml
+title Diagrama de Clases: Sistema de Gestión de Farmacia
+
+class Empleado {
+  -id : int
+  -nombre : String
+  -usuario : String
+  -contraseña : String
+  +iniciarSesion() : bool
+}
+
+class Cliente {
+  -id : int
+  -nombre : String
+  -telefono : String
+  +registrar() : void
+}
+
+class Producto {
+  -id : int
+  -nombre : String
+  -precio : double
+  -stock : int
+  +actualizarStock() : void
+}
+
+class Inventario {
+  +consultarStock() : List<Producto>
+  +registrarProducto(p : Producto) : void
+}
+
+class Factura {
+  -id : int
+  -fecha : Date
+  -total : double
+  +generarFactura() : void
+}
+
+class DetalleFactura {
+  -cantidad : int
+  -subtotal : double
+}
+
+class Reporte {
+  +generarReporteVentas() : void
+  +generarReporteIngresos() : void
+}
+
+Empleado --> Factura : "genera"
+Cliente --> Factura : "recibe"
+Factura --> DetalleFactura : "contiene"
+DetalleFactura --> Producto : "describe"
+Inventario --> Producto : "gestiona"
+Reporte --> Factura : "consulta"
+
+@enduml
