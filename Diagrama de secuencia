@@ -1,0 +1,27 @@
+@startuml
+title Diagrama de Secuencia: Inicio de Sesión
+
+actor Usuario
+participant "Pantalla de Login" as LoginUI
+participant "Servidor de Autenticación" as Servidor
+
+Usuario -> LoginUI : Abre la aplicación
+Usuario -> LoginUI : Ingresa usuario y contraseña
+LoginUI -> LoginUI : Validar campos
+
+alt Campos vacíos
+    LoginUI -> Usuario : Mostrar mensaje de error
+else
+    LoginUI -> Servidor : Enviar credenciales
+    Servidor -> Servidor : Verificar en base de datos
+
+    alt Credenciales válidas
+        Servidor -> LoginUI : Respuesta positiva
+        LoginUI -> Usuario : Redirigir al panel principal
+    else
+        Servidor -> LoginUI : Error de autenticación
+        LoginUI -> Usuario : Mostrar error: "Usuario o contraseña incorrectos"
+    end
+end
+
+@enduml
