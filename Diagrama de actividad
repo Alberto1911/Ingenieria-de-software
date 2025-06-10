@@ -1,0 +1,24 @@
+@startuml
+title Diagrama de Actividad: Inicio de Sesión
+
+start
+
+:Usuario abre la aplicación;
+:Usuario ingresa usuario y contraseña;
+
+if (¿Campos vacíos?) then (Sí)
+  :Mostrar mensaje "Complete todos los campos";
+  stop
+else (No)
+  :Enviar datos al servidor;
+  if (¿Credenciales válidas?) then (Sí)
+    :Mostrar mensaje "Inicio de sesión exitoso";
+    :Redirigir al menú principal;
+    stop
+  else (No)
+    :Mostrar mensaje "Usuario o contraseña incorrectos";
+    stop
+  endif
+endif
+
+@enduml
